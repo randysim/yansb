@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth, signIn } from "@/auth";
 
 export default async function Home() {
   const session = await auth();
@@ -9,6 +9,15 @@ export default async function Home() {
       <p>
         {session ? `Signed in as ${session.user?.email}` : "Not signed in"}
       </p>
+
+      <form
+        action={async () => {
+          "use server"
+          await signIn()
+        }}
+      >
+        <button type="submit">Sign In</button>
+      </form>
       
     </div>
   );
