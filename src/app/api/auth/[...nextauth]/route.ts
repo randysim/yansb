@@ -1,7 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-const options = {
+const options: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 15 * 60
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
