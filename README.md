@@ -4,6 +4,8 @@ Yet another Next.js SaaS boilerplate.
 
 .env
 ```
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
+DATABASE_URL=
+
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
 ```
