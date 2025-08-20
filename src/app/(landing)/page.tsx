@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export default async function Home() {
   return (
     <div>
@@ -10,13 +12,13 @@ export default async function Home() {
           Next.js best practices, start shipping
           code to production.
         </h4>
-        <div className="flex space-x-4 p-4">
-          <button>
+        <div className="flex space-x-4 p-8">
+          <Button>
             Get Started
-          </button>
-          <button>
+          </Button>
+          <Button>
             See Docs
-          </button>
+          </Button>
         </div>
       </section>
     </div>
