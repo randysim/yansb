@@ -1,5 +1,5 @@
 import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey } from "drizzle-orm/pg-core";
-import type { AdapterAccountType } from "@auth/core/adapters"
+import type { AdapterAccountType } from "next-auth/adapters";
 import { v4 as uuidv4 } from "uuid";
 
 export const users = pgTable("users", {
