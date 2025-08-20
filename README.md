@@ -2,6 +2,8 @@
 
 Yet another Next.js SaaS boilerplate.
 
+This project uses pnpm. Replace npm with pnpm
+
 .env
 ```
 DATABASE_URL=

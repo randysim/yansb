@@ -3,13 +3,21 @@ export default async function Home() {
     <div>
       {/* HERO SECTION */}
       <section className="flex flex-col items-center justify-center h-[550px] text-center">
-        <h1 className="font-bold text-6xl max-w-3xl p-5">Think less. Build more.</h1>
+        <h1 className="font-bold text-6xl max-w-3xl p-4">Think less. Build more.</h1>
         <h4 className="max-w-2xl text-lg">
           Don't waste time re-inventing the wheel, 
           YANSB has your MVP covered. Stop learning
           Next.js best practices, start shipping
           code to production.
         </h4>
+        <div className="flex space-x-4 p-4">
+          <button>
+            Get Started
+          </button>
+          <button>
+            See Docs
+          </button>
+        </div>
       </section>
     </div>
   );
