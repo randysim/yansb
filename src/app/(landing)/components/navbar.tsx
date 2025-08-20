@@ -26,7 +26,7 @@ export default function Navbar() {
                 <div className="flex h-16 items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="text-xl font-bold">
-                        Your Logo
+                        YANSB
                     </Link>
 
                     {/* Desktop Navigation */}
