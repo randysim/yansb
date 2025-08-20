@@ -1,8 +1,70 @@
 import { Button } from "@/components/ui/button";
 import { Marquee } from "@/components/magicui/marquee";
+import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import Image from "next/image";
+import { ComputerIcon, DatabaseIcon, DollarSignIcon, ShieldIcon } from "lucide-react";
+import { cloneElement } from "react";
 
 export default async function Home() {
+  const heroMarqueeImages = [
+      <Image src="/images/drizzle-light-background.png" alt="Drizzle ORM" width={200} height={80} className="mx-8" />,
+      <Image src="/images/nextjs-light-background.png" alt="Next.js" width={360} height={80} className="mx-8" />,
+      <Image src="/images/authjs-light-background.png" alt="Auth.js" width={220} height={80} className="mx-8" />,
+      <Image src="/images/tailwind-light-background.png" alt="Tailwind CSS" width={410} height={80} className="mx-8" />,
+      <Image src="/images/ts-light-background.png" alt="Typescript" width={80} height={80} className="mx-8" />,
+      <Image src="/images/shadcnui-light-background.png" alt="shadcn/ui" width={340} height={80} className="mx-8" />,
+      <Image src="/images/postgresql-light-background.png" alt="PostgreSQL" width={78} height={80} className="mx-8" />,
+      <Image src="/images/stripe-light-background.png" alt="Stripe" width={190} height={80} className="mx-8" />
+  ]
+
+  /* This bento-grid has 3 columns. Each card can take up 1-3 columns and X amount of rows */
+  const features = [
+    {
+      Icon: DatabaseIcon,
+      name: "Drizzle ORM",
+      description: "Manage data, migrations, and schema with Drizzle all set up.",
+      className: "col-span-3 lg:col-span-1 text-left",
+      href: "#",
+      cta: "Learn More",
+      background: (
+        <div></div>
+      )
+    },
+    {
+      Icon: ShieldIcon,
+      name: "Auth.js",
+      description: "Your endpoints are protected with Auth.js (NextAuth) using session tokens.",
+      className: "col-span-3 lg:col-span-1 text-left",
+      href: "#",
+      cta: "Learn More",
+      background: (
+        <div></div>
+      )
+    },
+    {
+      Icon: DollarSignIcon,
+      name: "Stripe",
+      description: "Subscription logic comes out of the box. A few tweaks and it should be good to go.",
+      className: "col-span-3 row-span-1 lg:col-span-1 lg:row-span-2 text-left",
+      href: "#",
+      cta: "Learn More",
+      background: (
+        <div></div>
+      )
+    },
+    {
+      Icon: ComputerIcon,
+      name: "Dev-Ops",
+      description: "YANSB comes with robust logging, code-formatting, and deployments. Write bullet-proof code, push, and it's deployed.",
+      className: "col-span-3 lg:col-span-2 text-left",
+      href: "#",
+      cta: "Learn More",
+      background: (
+        <div></div>
+      )
+    }
+  ]
+
   return (
     <div>
       {/* HERO SECTION */}
@@ -29,20 +91,28 @@ export default async function Home() {
         {/* COMPANY LOGOS */}
         <div className="relative flex w-full max-w-6xl flex-col items-center justify-center overflow-hidden mt-10">
           <Marquee>
-            <Image src="/images/drizzle-light-background.png" alt="Drizzle ORM" width={200} height={80} className="mx-8" />
-            <Image src="/images/nextjs-light-background.png" alt="Next.js" width={360} height={80} className="mx-8" />
-            <Image src="/images/authjs-light-background.png" alt="Auth.js" width={220} height={80} className="mx-8" />
-            <Image src="/images/tailwind-light-background.png" alt="Tailwind CSS" width={410} height={80} className="mx-8" />
-            <Image src="/images/ts-light-background.png" alt="Typescript" width={80} height={80} className="mx-8" />
-            <Image src="/images/shadcnui-light-background.png" alt="shadcn/ui" width={340} height={80} className="mx-8" />
-            <Image src="/images/postgresql-light-background.png" alt="PostgreSQL" width={78} height={80} className="mx-8" />
-            <Image src="/images/stripe-light-background.png" alt="Stripe" width={190} height={80} className="mx-8" />
+            {heroMarqueeImages.map((img, idx) => cloneElement(img, { key: idx }))}
           </Marquee>
 
           <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
         </div>
         
+      </section>
+
+      {/* FEATURES SECTION */}
+      <section className="flex flex-col items-center text-center py-24">
+        <h1 className="font-semibold text-4xl tracking-wide p-4">Why Start From Zero?</h1>
+        <h4 className="px-4 max-w-2xl md:text-lg text-muted-foreground">
+          <span className="font-semibold"> YANSB</span> comes with everything you need to ship day of.
+          Here's everything we're giving you, free of charge.
+        </h4>
+
+        <BentoGrid className="w-full max-w-6xl mt-16 p-8">
+          {
+            features.map((feature, idx) => <BentoCard key={idx} {...feature} />)
+          }
+        </BentoGrid>
       </section>
     </div>
   );
