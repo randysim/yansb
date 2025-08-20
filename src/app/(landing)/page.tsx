@@ -4,6 +4,8 @@ import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import Image from "next/image";
 import { ComputerIcon, DatabaseIcon, DollarSignIcon, ShieldIcon } from "lucide-react";
 import { cloneElement } from "react";
+import { PricingSection } from "../components/pricing";
+import { products } from "../lib/stripe";
 
 export default async function Home() {
   const heroMarqueeImages = [
@@ -113,6 +115,16 @@ export default async function Home() {
             features.map((feature, idx) => <BentoCard key={idx} {...feature} />)
           }
         </BentoGrid>
+      </section>
+
+      {/* PRICING SECTION */}
+      <section className="flex flex-col items-center text-center py-8">
+        <h1 className="font-semibold text-4xl tracking-wide p-4">Customize Pricing</h1>
+        <h4 className="px-4 max-w-2xl md:text-lg text-muted-foreground mb-16">
+          Because you might need to serve customers of all sizes.
+        </h4>
+
+        <PricingSection products={products} href="/login" />
       </section>
     </div>
   );
