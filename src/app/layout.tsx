@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yansb",
-  description: "Yet another Next.js SaaS boilerplate",
+  title: "YANSB",
+  description: "Yet Another Next.js SaaS Boilerplate",
 };
 
 export default async function RootLayout({
