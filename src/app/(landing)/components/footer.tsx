@@ -63,7 +63,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-foreground text-foreground">
+    <footer className="w-full border-t border-foreground/20 text-foreground">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-8 text-center md:text-left">
@@ -110,7 +110,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-8 border-t border-foreground/20">
+        <div className="pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
             <div className="flex items-center gap-2 text-sm text-foreground/75">
