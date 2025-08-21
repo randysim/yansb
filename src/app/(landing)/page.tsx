@@ -115,7 +115,7 @@ export default async function Home() {
             session ? <Link href="/dashboard"><Button>Go To Dashboard</Button></Link> : <AuthButton />
           }
           <a href="https://github.com/randysim/yansb" target="_blank">
-            <Button>
+            <Button variant="outline">
               View on Github
             </Button>
           </a>
