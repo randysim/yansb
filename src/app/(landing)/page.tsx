@@ -6,6 +6,8 @@ import { ComputerIcon, DatabaseIcon, DollarSignIcon, ShieldIcon } from "lucide-r
 import { cloneElement } from "react";
 import { PricingSection } from "../components/pricing";
 import { products } from "../lib/stripe";
+import ScrollToTop from "./components/scroll-to-top";
+import FAQItem from "./components/faq-item";
 
 export default async function Home() {
   const heroMarqueeImages = [
@@ -68,7 +70,7 @@ export default async function Home() {
   ]
 
   return (
-    <div>
+    <div className="pb-24">
       {/* HERO SECTION */}
       <section className="flex flex-col items-center text-center py-24">
         <h1 className="font-bold text-6xl max-w-3xl p-4">Think less. Build more.</h1>
@@ -118,13 +120,54 @@ export default async function Home() {
       </section>
 
       {/* PRICING SECTION */}
-      <section className="flex flex-col items-center text-center py-8">
+      <section className="flex flex-col items-center text-center py-24">
         <h1 className="font-semibold text-4xl tracking-wide p-4">Customize Pricing</h1>
         <h4 className="px-4 max-w-2xl md:text-lg text-muted-foreground mb-16">
           Because you might need to serve customers of all sizes.
         </h4>
 
         <PricingSection products={products} href="/login" />
+      </section>
+      
+      {/* CTA */}
+      <section className="flex flex-col items-center text-center py-24">
+        <h1 className="font-semibold text-4xl tracking-wide p-4">Ready to Get Started?</h1>
+        <h4 className="px-4 max-w-2xl md:text-lg text-muted-foreground mb-8">
+          Clone this repository completely for free and start building your MVP today.
+        </h4>
+
+        <ScrollToTop>Get Started</ScrollToTop>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="flex flex-col items-center text-center py-24">
+        <h1 className="font-semibold text-4xl tracking-wide p-4">Frequently Asked Questions</h1>
+        <h4 className="px-4 max-w-2xl md:text-lg text-muted-foreground mb-16">
+          Got questions? We've got answers.
+        </h4>
+
+        <div className="w-full max-w-3xl space-y-4">
+          <FAQItem 
+            question="What is YANSB?"
+            answer="YANSB (Yet Another Next.js Starter Boilerplate) is a complete Next.js starter template that includes authentication, database setup, payments, and deployment configuration to help you ship your MVP faster."
+          />
+          <FAQItem 
+            question="Do I need to pay for YANSB?"
+            answer="No, YANSB is completely free to use. You can clone the repository and start building immediately without any cost."
+          />
+          <FAQItem 
+            question="What technologies are included?"
+            answer="YANSB comes with Next.js, TypeScript, Tailwind CSS, Drizzle ORM, Auth.js, Stripe integration, PostgreSQL support, and shadcn/ui components."
+          />
+          <FAQItem 
+            question="Is YANSB suitable for production?"
+            answer="Absolutely! YANSB is built with production-ready best practices including proper authentication, database migrations, error handling, and deployment configurations."
+          />
+          <FAQItem 
+            question="How do I customize the starter template?"
+            answer="Simply clone the repository, install dependencies, and start modifying the code to fit your needs. The codebase is well-structured and documented to make customization straightforward."
+          />
+        </div>
       </section>
     </div>
   );
