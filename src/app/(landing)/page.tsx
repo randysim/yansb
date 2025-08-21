@@ -22,6 +22,7 @@ export default async function Home() {
   ]
 
   /* This bento-grid has 3 columns. Each card can take up 1-3 columns and X amount of rows */
+  const bentoBackgroundClass = "absolute top-0 [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)]"
   const features = [
     {
       Icon: DatabaseIcon,
@@ -31,7 +32,13 @@ export default async function Home() {
       href: "#",
       cta: "Learn More",
       background: (
-        <div></div>
+        <Image 
+          src="/images/drizzle-orm.png" 
+          alt="Drizzle ORM" 
+          width={460} 
+          height={460} 
+          className={bentoBackgroundClass}
+        />
       )
     },
     {
@@ -42,7 +49,13 @@ export default async function Home() {
       href: "#",
       cta: "Learn More",
       background: (
-        <div></div>
+        <Image 
+          src="/images/authjs.png" 
+          alt="Auth.js" 
+          width={460} 
+          height={460} 
+          className={`${bentoBackgroundClass} top-15 left-10`}
+        />
       )
     },
     {
@@ -53,7 +66,13 @@ export default async function Home() {
       href: "#",
       cta: "Learn More",
       background: (
-        <div></div>
+        <Image 
+          src="/images/stripe.png" 
+          alt="Stripe" 
+          width={460} 
+          height={500} 
+          className={`${bentoBackgroundClass}`}
+        />
       )
     },
     {
@@ -64,7 +83,13 @@ export default async function Home() {
       href: "#",
       cta: "Learn More",
       background: (
-        <div></div>
+        <Image 
+          src="/images/devops.png" 
+          alt="Dev-Ops" 
+          width={800} 
+          height={500} 
+          className={`${bentoBackgroundClass}`}
+        />
       )
     }
   ]
@@ -82,11 +107,13 @@ export default async function Home() {
         </h4>
         <div className="flex space-x-4 p-8">
           <Button>
-            Get Started
+            Sign In
           </Button>
-          <Button>
-            See Docs
-          </Button>
+          <a href="https://github.com/randysim/yansb" target="_blank">
+            <Button>
+              View on Github
+            </Button>
+          </a>
         </div>
 
         
