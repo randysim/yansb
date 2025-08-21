@@ -6,6 +6,8 @@ This project uses pnpm. Replace npm with pnpm
 
 .env
 ```
+NEXT_PUBLIC_API_ENDPOINT=
+
 DATABASE_URL=
 
 AUTH_SECRET=
