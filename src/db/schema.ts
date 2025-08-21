@@ -1,4 +1,4 @@
-import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey, boolean } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { v4 as uuidv4 } from "uuid";
 
@@ -42,4 +42,13 @@ export const sessions = pgTable("sessions", {
     sessionToken: text().primaryKey(),
     userId: uuid().notNull().references(() => users.id, { onDelete: "cascade" }),
     expires: timestamp({ mode: "date" }).notNull()
+})
+
+export const settings = pgTable("settings", {
+    userId: uuid().primaryKey().references(() => users.id, { onDelete: "cascade" }),
+    nextjsFirstTime: boolean().notNull(),
+    dob: timestamp().notNull(),
+    yoe: integer().notNull(),
+    created_at: timestamp().notNull().defaultNow(),
+    updated_at: timestamp().notNull().defaultNow().$onUpdate(() => new Date())
 })
