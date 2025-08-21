@@ -55,14 +55,13 @@ export default function OnboardManager() {
                 <>
                     <h1 className="text-2xl font-semibold text-foreground tracking-wide px-4">
                         What is your date of birth?
-
-                        <div className="py-4">
-                            <DatePicker 
-                                date={fields.dob} 
-                                onSelect={date => setFields(prev => ({ ...prev, dob: date }))}
-                            />
-                        </div>
                     </h1>
+                    <div className="py-4">
+                        <DatePicker 
+                            date={fields.dob} 
+                            onSelect={date => setFields(prev => ({ ...prev, dob: date }))}
+                        />
+                    </div>
                 </>
             )
         },
