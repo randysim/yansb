@@ -9,8 +9,6 @@ export default async function LandingLayout({
 }>) {
     const session = await auth();
 
-    console.log(session)
-
     if (!session) {
         redirect("/signin");
     }
