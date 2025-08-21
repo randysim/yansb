@@ -44,7 +44,7 @@ export async function POST(request: Request) {
         return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
-    const { newSettings } = await request.json();
+    const { settings: newSettings } = await request.json();
 
     if (!newSettings) {
         return new Response(JSON.stringify({ error: "Invalid request" }), { status: 400 });
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     await db.insert(settings).values({
         userId: session.user.id,
         nextjsFirstTime,
-        dob,
+        dob: new Date(dob),
         yoe
     });
 
@@ -69,7 +69,7 @@ export async function PATCH(request: Request) {
         return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     }
 
-    const { newSettings } = await request.json();
+    const { settings: newSettings } = await request.json();
 
     if (!newSettings) {
         return new Response(JSON.stringify({ error: "Invalid request" }), { status: 400 });
