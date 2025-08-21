@@ -9,6 +9,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import AuthButton from "@/app/components/auth-button";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -39,7 +40,7 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
-                        <Button>Sign In</Button>
+                        <AuthButton />
                     </div>
 
                     {/* Mobile Navigation */}
@@ -63,7 +64,7 @@ export default function Navbar() {
                                         {item.name}
                                     </Link>
                                 ))}
-                                <Button className="mt-4">Get Started</Button>
+                                <AuthButton className="mt-4" />
                             </div>
                         </SheetContent>
                     </Sheet>

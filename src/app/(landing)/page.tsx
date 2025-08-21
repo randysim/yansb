@@ -8,8 +8,13 @@ import { PricingSection } from "../components/pricing";
 import { products } from "../lib/stripe";
 import ScrollToTop from "./components/scroll-to-top";
 import FAQItem from "./components/faq-item";
+import AuthButton from "../components/auth-button";
+import { auth } from "@/auth";
+import Link from "next/link";
 
 export default async function Home() {
+  const session = await auth();
+
   const heroMarqueeImages = [
       <Image src="/images/drizzle-light-background.png" alt="Drizzle ORM" width={200} height={80} className="mx-8" />,
       <Image src="/images/nextjs-light-background.png" alt="Next.js" width={360} height={80} className="mx-8" />,
@@ -106,9 +111,9 @@ export default async function Home() {
           code to production.
         </h4>
         <div className="flex space-x-4 p-8">
-          <Button>
-            Sign In
-          </Button>
+          {
+            session ? <Link href="/dashboard"><Button>Go To Dashboard</Button></Link> : <AuthButton />
+          }
           <a href="https://github.com/randysim/yansb" target="_blank">
             <Button>
               View on Github
