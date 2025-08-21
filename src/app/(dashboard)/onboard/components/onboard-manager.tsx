@@ -57,7 +57,10 @@ export default function OnboardManager() {
                         What is your date of birth?
 
                         <div className="py-4">
-                            <DatePicker onSelect={date => setFields({ ...fields, dob: date })} />
+                            <DatePicker 
+                                date={fields.dob} 
+                                onSelect={date => setFields(prev => ({ ...prev, dob: date }))}
+                            />
                         </div>
                     </h1>
                 </>
@@ -130,6 +133,15 @@ export default function OnboardManager() {
                         disabled={!forms[page].validate()}
                     >
                         Next
+                    </Button>
+                }
+
+                {
+                    page > 0 && <Button 
+                        onClick={() => setPage(page - 1)}
+                        className="mr-4"
+                    >
+                        Back
                     </Button>
                 }
             </div>

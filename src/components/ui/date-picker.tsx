@@ -13,33 +13,34 @@ import {
 } from "@/components/ui/popover"
 
 type DatePickerProps = {
+    date?: Date;
     onSelect: (date: Date) => void;
 }
 
-export function DatePicker({ onSelect }: DatePickerProps) {
-  const [date, setDate] = useState<Date>()
+export function DatePicker({ date: initialDate, onSelect }: DatePickerProps) {
+    const [date, setDate] = useState<Date | undefined>(initialDate);
 
-  useEffect(() => {
-    if (date) {
-      onSelect(date)
-    }
-  }, [date])
+    useEffect(() => {
+        if (date && date != initialDate) {
+            onSelect(date);
+        }
+    }, [date, onSelect]);
 
-  return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          data-empty={!date}
-          className="data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
-        >
-          <CalendarIcon />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <Calendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" />
-      </PopoverContent>
-    </Popover>
-  )
+    return (
+        <Popover>
+        <PopoverTrigger asChild>
+            <Button
+            variant="outline"
+            data-empty={!date}
+            className="data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
+            >
+            <CalendarIcon />
+            {date ? format(date, "PPP") : <span>Pick a date</span>}
+            </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0">
+            <Calendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" />
+        </PopoverContent>
+        </Popover>
+    )
 }
