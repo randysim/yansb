@@ -146,7 +146,7 @@ export default async function Home() {
           Got questions? We've got answers.
         </h4>
 
-        <div className="w-full max-w-3xl space-y-4">
+        <div className="w-full max-w-3xl space-y-4 px-8 md:px-0">
           <FAQItem 
             question="What is YANSB?"
             answer="YANSB (Yet Another Next.js Starter Boilerplate) is a complete Next.js starter template that includes authentication, database setup, payments, and deployment configuration to help you ship your MVP faster."
