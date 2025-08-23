@@ -61,11 +61,13 @@ function UserDropdown() {
                     </div>
 
                     {/* Row 2: Settings */}
-                    <button 
-                        className="w-full text-left px-4 py-3 hover:bg-gray-100 border-b cursor-pointer"
-                    >
-                        Settings
-                    </button>
+                    <Link href="/settings">
+                        <button 
+                            className="w-full text-left px-4 py-3 hover:bg-gray-100 border-b cursor-pointer"
+                        >
+                            Settings
+                        </button>
+                    </Link>
 
                     {/* Row 3: Sign out */}
                     <button 
