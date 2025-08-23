@@ -10,6 +10,7 @@ import {
   CreditCard,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import PricingBottomSheet from "../../components/pricing-bottom-sheet"
 
 // Section Components
 function ProfileSection({ session }: { session: any }) {
@@ -144,7 +145,7 @@ function BillingSection() {
             <p className="text-muted-foreground">Free Plan</p>
           </div>
           <div className="flex space-x-2">
-            <Button>Upgrade Plan</Button>
+            <PricingBottomSheet>Upgrade Plan</PricingBottomSheet>
             <Button variant="outline">View Usage</Button>
           </div>
         </div>

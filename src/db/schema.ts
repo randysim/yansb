@@ -1,6 +1,7 @@
-import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey, boolean } from "drizzle-orm/pg-core";
+import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey, boolean, customType } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 import { v4 as uuidv4 } from "uuid";
+import Stripe from "stripe";
 
 export const users = pgTable("users", {
     id: uuid().primaryKey().$defaultFn(() => uuidv4()),
@@ -46,9 +47,23 @@ export const sessions = pgTable("sessions", {
 
 export const settings = pgTable("settings", {
     userId: uuid().primaryKey().references(() => users.id, { onDelete: "cascade" }),
+    created_at: timestamp().notNull().defaultNow(),
+    updated_at: timestamp().notNull().defaultNow().$onUpdate(() => new Date()),
+    stripeCustomerId: varchar({ length: 255 }).unique(),
+
+    /* EXAMPLE PROPERTIES */
     nextjsFirstTime: boolean().notNull(),
     dob: timestamp().notNull(),
     yoe: integer().notNull(),
-    created_at: timestamp().notNull().defaultNow(),
-    updated_at: timestamp().notNull().defaultNow().$onUpdate(() => new Date())
+})
+
+export const subscriptions = pgTable("subscriptions", {
+    userId: uuid().primaryKey().references(() => users.id, { onDelete: "cascade" }),
+    status: text().$type<Stripe.Subscription.Status>().notNull(),
+    priceId: text(),
+    currentPeriodStart: integer(),
+    currentPeriodEnd: integer(),
+    cancelAtPeriodEnd: boolean(),
+    paymentBrand: text(),
+    paymentLast4: text()
 })

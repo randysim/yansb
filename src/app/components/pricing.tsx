@@ -87,27 +87,28 @@ export function PricingSection(
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-                <PricingCard
-                    key={product.id}
-                    title={product.title}
-                    description={product.description}
-                    price={product.price}
-                    interval={product.interval}
-                    features={product.features}
-                    onSelect={() => {
-                        if (onProductSelect && href) {
-                            throw new Error("Too many pricing section actions specified. Either provide a callback or an href.")
-                        }
+                <div key={product.id} className="flex justify-center">
+                    <PricingCard
+                        title={product.title}
+                        description={product.description}
+                        price={product.price}
+                        interval={product.interval}
+                        features={product.features}
+                        onSelect={() => {
+                            if (onProductSelect && href) {
+                                throw new Error("Too many pricing section actions specified. Either provide a callback or an href.")
+                            }
 
-                        if (onProductSelect) {
-                            onProductSelect(product);
-                        } else if (href) {
-                            router.push(href);
-                        } else {
-                            throw new Error("Pricing Section action not specified. Either provide a callback or an href.")
-                        }
-                    }}
-                />
+                            if (onProductSelect) {
+                                onProductSelect(product);
+                            } else if (href) {
+                                router.push(href);
+                            } else {
+                                throw new Error("Pricing Section action not specified. Either provide a callback or an href.")
+                            }
+                        }}
+                    />
+                </div>
             ))}
         </div>
     );

@@ -1,8 +1,9 @@
 import type { ProductType } from "../components/pricing";
+import { loadStripe } from "@stripe/stripe-js";
 
 export const products: ProductType[] = [
     {
-        id: "real-id-1",
+        id: "price_1RzNnSDPxBQWa6K6hLqfjjcY",
         title: "Basic",
         description: "For People Getting Started",
         price: "$10",
@@ -14,7 +15,7 @@ export const products: ProductType[] = [
         ]
     },
     {
-        id: "real-id-2",
+        id: "price_1RzNnyDPxBQWa6K6l8AnwP0I",
         title: "Pro",
         description: "For Passionate Enthusiasts",
         price: "$20",
@@ -27,7 +28,7 @@ export const products: ProductType[] = [
         ]
     },
     {
-        id: "real-id-3",
+        id: "price_1RzNoTDPxBQWa6K6Dg0LYgy4",
         title: "Enterprise",
         description: "Per Seat",
         price: "$30",
@@ -41,3 +42,5 @@ export const products: ProductType[] = [
         ]
     }
 ]
+
+export const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK || "");

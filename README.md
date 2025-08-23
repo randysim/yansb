@@ -6,7 +6,6 @@ This project uses pnpm. Replace npm with pnpm
 
 .env
 ```
-NEXT_PUBLIC_API_ENDPOINT=
 NEXT_PUBLIC_STRIPE_PK=
 
 DATABASE_URL=
