@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     const { users: user, settings: userSettings } = settingsRows[0];
 
-    if (!userSettings.stripeCustomerId) {
+    if (!userSettings.customerId) {
         const newCustomer = await stripe.customers.create({
             email: user.email,
             metadata: {
@@ -38,11 +38,11 @@ export async function POST(req: Request) {
             }
         });
 
-        userSettings.stripeCustomerId = newCustomer.id;
+        userSettings.customerId = newCustomer.id;
 
         await db
             .update(settings)
-            .set({ stripeCustomerId: newCustomer.id })
+            .set({ customerId: newCustomer.id })
             .where(eq(settings.userId, user.id));
     }
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const origin = headersList.get('origin');
 
     const checkout = await stripe.checkout.sessions.create({
-        customer: userSettings.stripeCustomerId,
+        customer: userSettings.customerId,
         success_url: `${origin}/success`,
         mode: "subscription",
         payment_method_types: ['card'],

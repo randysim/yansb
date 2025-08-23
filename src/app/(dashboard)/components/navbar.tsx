@@ -61,7 +61,7 @@ function UserDropdown() {
                     </div>
 
                     {/* Row 2: Settings */}
-                    <Link href="/settings">
+                    <Link href="/settings" onClick={() => setOpen(false)}>
                         <button 
                             className="w-full text-left px-4 py-3 hover:bg-gray-100 border-b cursor-pointer"
                         >

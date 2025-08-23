@@ -49,7 +49,7 @@ export const settings = pgTable("settings", {
     userId: uuid().primaryKey().references(() => users.id, { onDelete: "cascade" }),
     created_at: timestamp().notNull().defaultNow(),
     updated_at: timestamp().notNull().defaultNow().$onUpdate(() => new Date()),
-    stripeCustomerId: varchar({ length: 255 }).unique(),
+    customerId: varchar({ length: 255 }).unique(),
 
     /* EXAMPLE PROPERTIES */
     nextjsFirstTime: boolean().notNull(),
@@ -58,7 +58,8 @@ export const settings = pgTable("settings", {
 })
 
 export const subscriptions = pgTable("subscriptions", {
-    userId: uuid().primaryKey().references(() => users.id, { onDelete: "cascade" }),
+    id: varchar({ length: 255 }).primaryKey(),
+    customerId: varchar({ length: 255 }).references(() => settings.customerId, { onDelete: "cascade" }),
     status: text().$type<Stripe.Subscription.Status>().notNull(),
     priceId: text(),
     currentPeriodStart: integer(),
