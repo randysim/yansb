@@ -18,8 +18,7 @@ export default function PricingBottomSheet({ children } : React.PropsWithChildre
             const response = await fetch("/api/subscriptions/checkout", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRIPE_PK}`
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ priceId: product.id })
             });

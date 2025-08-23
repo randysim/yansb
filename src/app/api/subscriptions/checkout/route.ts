@@ -25,7 +25,7 @@ export async function POST(req: Request) {
         .limit(1);
 
     if (settingsRows.length === 0) {
-        return new Response(JSON.stringify({ error: "User not found" }), { status: 404 });
+        return new Response(JSON.stringify({ error: "User not found" }), { status: 400 });
     }
 
     const { users: user, settings: userSettings } = settingsRows[0];

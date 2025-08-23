@@ -13,14 +13,6 @@ export default async function DashboardPage() {
     return null;
   }
 
-  const settingsRows = await db.select()
-    .from(settings)
-    .where(eq(settings.userId, session.user.id));
-
-  if (settingsRows.length === 0) {
-    redirect("/onboard")
-  }
-
   return (
     <div className="flex justify-center items-center py-24">
       <Card className="mx-4">

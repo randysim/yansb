@@ -9,7 +9,7 @@ export default async function OnboardPage() {
     const session = await auth();
 
     if (!session || !session.user || !session.user.id) {
-        return null;
+        redirect("/signin");
     }
 
     const settingsRows = await db.select()
