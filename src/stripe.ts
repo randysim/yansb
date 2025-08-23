@@ -3,8 +3,28 @@ import { subscriptions } from "./db/schema";
 import { eq } from "drizzle-orm/sql/expressions/conditions";
 import db from "@/db";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-export default stripe;
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+export const allowedEvents: Stripe.Event.Type[] = [
+    "checkout.session.completed",
+    "customer.subscription.created",
+    "customer.subscription.updated",
+    "customer.subscription.deleted",
+    "customer.subscription.paused",
+    "customer.subscription.resumed",
+    "customer.subscription.pending_update_applied",
+    "customer.subscription.pending_update_expired",
+    "customer.subscription.trial_will_end",
+    "invoice.paid",
+    "invoice.payment_failed",
+    "invoice.payment_action_required",
+    "invoice.upcoming",
+    "invoice.marked_uncollectible",
+    "invoice.payment_succeeded",
+    "payment_intent.succeeded",
+    "payment_intent.payment_failed",
+    "payment_intent.canceled",
+];
 
 export async function syncStripeData(customerId: string) {
     const userSubscriptions = await stripe.subscriptions.list({
@@ -45,4 +65,21 @@ export async function syncStripeData(customerId: string) {
         });
     
     return { id: subscription.id, ...subscriptionData }
+}
+
+export async function processEvent(event: Stripe.Event) {
+    if (!allowedEvents.includes(event.type)) return;
+
+    /* ALL TRACKED EVENTS HAVE CUSTOMER ID */
+    const { customer: customerId } = event?.data?.object as {
+        customer: string;
+    };
+
+    if (typeof customerId !== "string") {
+        throw new Error(
+        `[STRIPE HOOK][CANCER] ID isn't string.\nEvent type: ${event.type}`
+        );
+    }
+
+    return await syncStripeData(customerId);
 }

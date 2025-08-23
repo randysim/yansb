@@ -15,7 +15,7 @@ import React from "react";
 export default function PricingBottomSheet({ children } : React.PropsWithChildren<{}>) {
     const handleCheckout = async (product: ProductType) => {
         try {
-            const response = await fetch("/api/checkout", {
+            const response = await fetch("/api/subscriptions/checkout", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

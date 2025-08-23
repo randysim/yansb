@@ -2,7 +2,7 @@ import { auth } from "@/auth";
 import db from "@/db";
 import { settings, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import stripe from "@/stripe";
+import { stripe } from "@/stripe";
 
 export async function POST(req: Request) {
     const { priceId } = await req.json();
