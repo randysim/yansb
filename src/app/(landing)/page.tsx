@@ -158,7 +158,7 @@ export default async function Home() {
           Because you might need to serve customers of all sizes.
         </h4>
 
-        <PricingSection products={products} href="/login" />
+        <PricingSection products={products} href="/signin" />
       </section>
       
       {/* CTA */}
