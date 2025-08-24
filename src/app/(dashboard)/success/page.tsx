@@ -1,10 +1,7 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/shadcn-io/spinner";
-import db from "@/db";
-import { settings } from "@/db/schema";
 import { syncStripeData } from "@/stripe";
-import { eq } from "drizzle-orm";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -21,20 +18,7 @@ export default function SuccessPage() {
 async function VerifySuccess() {
     const session = await auth();
 
-    if (!session?.user?.id) return null;
-
-    const settingsRows = await db
-        .select()
-        .from(settings)
-        .where(eq(settings.userId, session.user.id));
-
-    if (settingsRows.length === 0) return null;
-
-    const userSettings = settingsRows[0];
-
-    if (!userSettings.customerId) return null;
-
-    const subscription = await syncStripeData(userSettings.customerId);
+    const subscription = await syncStripeData(session?.user.setting?.customerId!);
 
     const renderMessage = () => {
         if (!subscription) {
