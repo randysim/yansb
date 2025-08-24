@@ -1,7 +1,3 @@
-Here’s a robust `README.md` for your Next.js SaaS template, covering all the points you outlined:
-
-***
-
 # YANSB – Yet Another Next.js SaaS Boilerplate
 
 A feature-rich, modern SaaS boilerplate built with **Next.js** and packed with everything you need to launch your SaaS product quickly.
@@ -114,12 +110,3 @@ pnpm db:push
 - Customization is easy: tweak components, pages, and config files as needed.
 - Stripe and Google OAuth are ready for your credentials.
 - See `src/db/schema.ts` for how the database is structured.
-
-***
-
-Happy building! 🎉
-
----
-
-[1](https://github.com/randysim/yansb)
-[2](https://github.com/randysim/yansb/tree/main)
