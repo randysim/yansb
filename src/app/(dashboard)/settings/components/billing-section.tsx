@@ -2,6 +2,7 @@ import PricingBottomSheet from "../../components/pricing-bottom-sheet"
 import { Button } from "@/components/ui/button"
 import { Session } from "next-auth"
 import { products } from "@/app/lib/stripe"
+import ManageButton from "./manage-subscription"
 
 export default function BillingSection({ session }: { session: Session }) {
     const renderSubscriptionData = () => {
@@ -48,9 +49,7 @@ export default function BillingSection({ session }: { session: Session }) {
                         <div className="flex space-x-2">
                             {
                                 session.user.subscription ? (
-                                    <Button>
-                                        Manage Plan
-                                    </Button>
+                                    <ManageButton customerId={session.user.setting!.customerId!} />
                                 ) : (
                                     <PricingBottomSheet>Upgrade Plan</PricingBottomSheet>
                                 )
