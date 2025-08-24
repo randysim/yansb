@@ -1,3 +1,5 @@
+/* IMPLEMENTATION TAKEN FROM https://github.com/t3dotgg/stripe-recommendations */
+
 import Stripe from "stripe";
 import { subscriptions } from "./db/schema";
 import { eq } from "drizzle-orm/sql/expressions/conditions";
