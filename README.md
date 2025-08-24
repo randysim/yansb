@@ -20,21 +20,6 @@ This template comes ready with:
 
 ***
 
-## 🛠️ Technologies Used
-
-- **Next.js**
-- **TypeScript**
-- **Drizzle ORM**
-- **NextAuth v5 (Auth.js)**
-- **Stripe API & React Stripe.js**
-- **PostgreSQL**
-- **TailwindCSS**
-- **shadcn/ui**, **Radix UI**
-- **Prettier**, **ESLint**
-- **pnpm** (use this instead of npm or yarn!)
-
-***
-
 ## ⚡ Getting Started
 
 ### 1. Clone the Repository
