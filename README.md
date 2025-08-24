@@ -100,6 +100,7 @@ pnpm db:push
 - `pnpm build` — Production build
 - `pnpm start` — Start production server
 - `pnpm db:push` — Push Drizzle schema migrations
+- `pnpm db:studio` - Open Drizzle Studio
 - `pnpm format` — Format code with Prettier
 
 ***
