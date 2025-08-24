@@ -19,13 +19,13 @@ import BillingSection from "./billing-section"
 
 export default function Settings() {
   const { data: session } = useSession()
-  const [activeSection, setActiveSection] = useState("profile")
+  const [activeSection, setActiveSection] = useState("profile");
 
   const settings : { [key: string]: { label: string, icon: JSX.Element, component: JSX.Element } } = {
     "profile": {
       label: "Profile",
       icon: <User className="w-5 h-5" />,
-      component: <ProfileSection session={session} />
+      component: <ProfileSection session={session!} />
     },
     "security": {
       label: "Security",
@@ -45,7 +45,7 @@ export default function Settings() {
     "billing": {
       label: "Billing",
       icon: <CreditCard className="w-5 h-5" />,
-      component: <BillingSection session={session} />
+      component: <BillingSection session={session!} />
     }
   }
 
