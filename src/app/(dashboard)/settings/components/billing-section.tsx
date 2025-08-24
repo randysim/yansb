@@ -29,6 +29,9 @@ export default function BillingSection({ session }: { session: Session }) {
                     {
                         products.find(p => p.id === session.user.subscription?.priceId)?.title
                     }
+                    {
+                        session.user.subscription?.cancelAtPeriodEnd ? " (Cancelling at period end)" : ""
+                    }
                 </p>
                 <p>
                     From {startDate} to {endDate}
