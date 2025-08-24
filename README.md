@@ -96,3 +96,4 @@ pnpm db:push
 - Customization is easy: tweak components, pages, and config files as needed.
 - Stripe and Google OAuth are ready for your credentials.
 - See `src/db/schema.ts` for how the database is structured.
+- Organizes components and code by feature.
