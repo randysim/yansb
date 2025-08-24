@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
-import { InferSelectModel } from "drizzle-orm";
-import { settings, subscriptions } from "@/db/schema";
+import NextAuth from 'next-auth'
+import { InferSelectModel } from 'drizzle-orm'
+import { settings, subscriptions } from '@/db/schema'
 
 declare module 'next-auth' {
     interface Session {

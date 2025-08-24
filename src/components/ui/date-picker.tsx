@@ -1,46 +1,42 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { useState, useEffect } from 'react'
+import { format } from 'date-fns'
+import { Calendar as CalendarIcon } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 type DatePickerProps = {
-    date?: Date;
-    onSelect: (date: Date) => void;
+    date?: Date
+    onSelect: (date: Date) => void
 }
 
 export function DatePicker({ date: initialDate, onSelect }: DatePickerProps) {
-    const [date, setDate] = useState<Date | undefined>(initialDate);
+    const [date, setDate] = useState<Date | undefined>(initialDate)
 
     useEffect(() => {
         if (date && date != initialDate) {
-            onSelect(date);
+            onSelect(date)
         }
-    }, [date, onSelect]);
+    }, [date, onSelect])
 
     return (
         <Popover>
-        <PopoverTrigger asChild>
-            <Button
-            variant="outline"
-            data-empty={!date}
-            className="data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
-            >
-            <CalendarIcon />
-            {date ? format(date, "PPP") : <span>Pick a date</span>}
-            </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0">
-            <Calendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" />
-        </PopoverContent>
+            <PopoverTrigger asChild>
+                <Button
+                    variant="outline"
+                    data-empty={!date}
+                    className="data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal"
+                >
+                    <CalendarIcon />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" />
+            </PopoverContent>
         </Popover>
     )
 }

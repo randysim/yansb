@@ -1,24 +1,30 @@
-import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/shadcn-io/spinner";
-import { syncStripeData } from "@/stripe";
-import Link from "next/link";
-import { Suspense } from "react";
+import { auth } from '@/auth'
+import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/shadcn-io/spinner'
+import { syncStripeData } from '@/stripe'
+import Link from 'next/link'
+import { Suspense } from 'react'
 
 export default function SuccessPage() {
     return (
         <div className="w-full py-24">
-            <Suspense fallback={<div className="w-full flex justify-center"><Spinner variant="circle" size={64} /></div>}>
+            <Suspense
+                fallback={
+                    <div className="w-full flex justify-center">
+                        <Spinner variant="circle" size={64} />
+                    </div>
+                }
+            >
                 <VerifySuccess />
             </Suspense>
         </div>
-    );
+    )
 }
 
 async function VerifySuccess() {
-    const session = await auth();
+    const session = await auth()
 
-    const subscription = await syncStripeData(session?.user.setting?.customerId!);
+    const subscription = await syncStripeData(session?.user.setting?.customerId!)
 
     const renderMessage = () => {
         if (!subscription) {
@@ -43,9 +49,7 @@ async function VerifySuccess() {
             {renderMessage()}
             <div>
                 <Link href="/dashboard">
-                    <Button className="mt-4">
-                        Go To Dashboard
-                    </Button>
+                    <Button className="mt-4">Go To Dashboard</Button>
                 </Link>
             </div>
         </div>

@@ -1,20 +1,20 @@
-import Navbar from "./components/navbar";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+import Navbar from './components/navbar'
+import { auth } from '@/auth'
+import { redirect } from 'next/navigation'
 
 export default async function LandingLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode
 }>) {
-    const session = await auth();
+    const session = await auth()
 
     if (!session?.user?.id) {
-        redirect("/signin");
+        redirect('/signin')
     }
 
     if (!session.user.setting) {
-      redirect("/onboard")
+        redirect('/onboard')
     }
 
     return (
@@ -22,5 +22,5 @@ export default async function LandingLayout({
             <Navbar />
             {children}
         </div>
-    );
+    )
 }

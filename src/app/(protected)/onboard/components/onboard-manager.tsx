@@ -1,26 +1,26 @@
-"use client"
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { DatePicker } from "@/components/ui/date-picker";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+'use client'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { DatePicker } from '@/components/ui/date-picker'
+import { Input } from '@/components/ui/input'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 type OnboardFields = {
-    nextjsFirstTime?: boolean;
-    dob?: Date;
-    yoe?: number;
+    nextjsFirstTime?: boolean
+    dob?: Date
+    yoe?: number
 }
 
 export default function OnboardManager() {
-    const [page, setPage] = useState(0);
-    const [fields, setFields] = useState<OnboardFields>({});
-    const router = useRouter();
+    const [page, setPage] = useState(0)
+    const [fields, setFields] = useState<OnboardFields>({})
+    const router = useRouter()
 
     const forms = [
         {
             validate: () => {
-                return fields.nextjsFirstTime !== undefined;
+                return fields.nextjsFirstTime !== undefined
             },
             content: (
                 <>
@@ -31,21 +31,21 @@ export default function OnboardManager() {
                     <div className="space-x-4">
                         <Button
                             className="px-8"
-                            variant={fields.nextjsFirstTime === true ? "default" : "outline"} 
+                            variant={fields.nextjsFirstTime === true ? 'default' : 'outline'}
                             onClick={() => setFields({ ...fields, nextjsFirstTime: true })}
                         >
                             Yes
                         </Button>
                         <Button
                             className="px-8"
-                            variant={fields.nextjsFirstTime === false ? "default" : "outline"}
+                            variant={fields.nextjsFirstTime === false ? 'default' : 'outline'}
                             onClick={() => setFields({ ...fields, nextjsFirstTime: false })}
                         >
                             No
                         </Button>
                     </div>
                 </>
-            )
+            ),
         },
         {
             validate: () => {
@@ -57,17 +57,17 @@ export default function OnboardManager() {
                         What is your date of birth?
                     </h1>
                     <div className="py-4">
-                        <DatePicker 
-                            date={fields.dob} 
-                            onSelect={date => setFields(prev => ({ ...prev, dob: date }))}
+                        <DatePicker
+                            date={fields.dob}
+                            onSelect={(date) => setFields((prev) => ({ ...prev, dob: date }))}
                         />
                     </div>
                 </>
-            )
+            ),
         },
         {
             validate: () => {
-                return fields.yoe !== undefined && isNaN(fields.yoe) === false;
+                return fields.yoe !== undefined && isNaN(fields.yoe) === false
             },
             content: (
                 <>
@@ -79,71 +79,60 @@ export default function OnboardManager() {
                         <Input
                             type="number"
                             value={fields.yoe || 0}
-                            onChange={e => setFields({ ...fields, yoe: Number(e.target.value) })}
+                            onChange={(e) => setFields({ ...fields, yoe: Number(e.target.value) })}
                             className="border border-input rounded-md p-2 w-full"
                         />
                     </div>
                 </>
-            )
-        }
+            ),
+        },
     ]
 
     const submit = async () => {
-        const res = await fetch("/api/users/settings", {
-            method: "POST",
+        const res = await fetch('/api/users/settings', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 settings: {
                     nextjsFirstTime: fields.nextjsFirstTime,
                     dob: fields.dob,
-                    yoe: fields.yoe
-                }
-            })
-        });
+                    yoe: fields.yoe,
+                },
+            }),
+        })
 
         if (!res.ok) {
-            console.error("Failed to submit settings");
-            return;
+            console.error('Failed to submit settings')
+            return
         }
 
         // Redirect to dashboard or show success message
-        router.push("/dashboard");
+        router.push('/dashboard')
     }
 
     return (
         <Card className="w-full mx-4 max-w-2xl flex flex-col items-center">
-            {
-                forms[page].content
-            }
+            {forms[page].content}
 
             <div className="w-full flex flex-row-reverse pr-4 mt-8">
-                {
-                    page === forms.length - 1 ? 
-                    <Button
-                        onClick={submit}
-                        disabled={!forms[page].validate()}
-                    >
+                {page === forms.length - 1 ? (
+                    <Button onClick={submit} disabled={!forms[page].validate()}>
                         Submit
-                    </Button> : 
-                    <Button
-                        onClick={() => setPage(page + 1)}
-                        disabled={!forms[page].validate()}
-                    >
+                    </Button>
+                ) : (
+                    <Button onClick={() => setPage(page + 1)} disabled={!forms[page].validate()}>
                         Next
                     </Button>
-                }
+                )}
 
-                {
-                    page > 0 && <Button 
-                        onClick={() => setPage(page - 1)}
-                        className="mr-4"
-                    >
+                {page > 0 && (
+                    <Button onClick={() => setPage(page - 1)} className="mr-4">
                         Back
                     </Button>
-                }
+                )}
             </div>
         </Card>
-    );
+    )
 }

@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 
-export default function ManageButton({ customerId } : { customerId: string }) {
+export default function ManageButton({ customerId }: { customerId: string }) {
     const handleManageSubscription = async () => {
         try {
             const response = await fetch('/api/subscriptions/manage', {
@@ -8,23 +8,19 @@ export default function ManageButton({ customerId } : { customerId: string }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ customerId })
-            });
+                body: JSON.stringify({ customerId }),
+            })
 
             if (response.status !== 200) {
-                throw new Error('Failed to create customer portal.');
+                throw new Error('Failed to create customer portal.')
             }
 
-            const { url } = await response.json();
-            window.open(url, "_blank");
+            const { url } = await response.json()
+            window.open(url, '_blank')
         } catch (error) {
-            console.error(`Error managing subscription: ${error}`);
+            console.error(`Error managing subscription: ${error}`)
         }
     }
 
-    return (
-        <Button onClick={handleManageSubscription}>
-            Manage Plan
-        </Button>
-    )
+    return <Button onClick={handleManageSubscription}>Manage Plan</Button>
 }

@@ -1,48 +1,33 @@
-"use client"
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle
-} from "@/components/ui/card";
+'use client'
+import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 export type ProductType = {
-    id: string;
-    title: string;
-    description: string;
-    price: string;
-    interval: string;
-    features: string[];
+    id: string
+    title: string
+    description: string
+    price: string
+    interval: string
+    features: string[]
 }
 
 interface PricingCardProps {
-    title: string;
-    description: string;
-    price: string;
-    interval: string;
-    features: string[];
-    onSelect: () => void;
+    title: string
+    description: string
+    price: string
+    interval: string
+    features: string[]
+    onSelect: () => void
 }
 
 interface PricingSectionProps {
-    products: ProductType[];
-    onProductSelect?: (product: ProductType) => void;
-    href?: string;
+    products: ProductType[]
+    onProductSelect?: (product: ProductType) => void
+    href?: string
 }
 
-export function PricingCard(
-    { 
-        title,
-        description, 
-        price,
-        interval, 
-        features,
-        onSelect
-    }: PricingCardProps
-) {
+export function PricingCard({ title, description, price, interval, features, onSelect }: PricingCardProps) {
     return (
         <Card className="bg-white shadow-md rounded-lg w-80 px-4 py-8">
             <CardHeader>
@@ -52,36 +37,25 @@ export function PricingCard(
                     <span className="text-4xl font-bold text-center">{price}</span>
                     <span className="text-gray-500 text-center ml-2">/ {interval}</span>
                 </div>
-                <Button
-                    className="w-full" 
-                    onClick={onSelect}
-                >
+                <Button className="w-full" onClick={onSelect}>
                     Select
                 </Button>
             </CardHeader>
             <CardContent>
                 <ul className="space-y-2">
-                    {
-                        features.map((feature, idx) => (
-                            <li key={idx} className="text-gray-700 flex items-center">
-                                <span className="text-green-500 mr-2">✓</span>
-                                {feature}
-                            </li>
-                        ))
-                    }
+                    {features.map((feature, idx) => (
+                        <li key={idx} className="text-gray-700 flex items-center">
+                            <span className="text-green-500 mr-2">✓</span>
+                            {feature}
+                        </li>
+                    ))}
                 </ul>
             </CardContent>
         </Card>
-    );
+    )
 }
 
-export function PricingSection(
-    {
-        products,
-        onProductSelect,
-        href
-    }: PricingSectionProps
-) {
+export function PricingSection({ products, onProductSelect, href }: PricingSectionProps) {
     const router = useRouter()
 
     return (
@@ -96,20 +70,24 @@ export function PricingSection(
                         features={product.features}
                         onSelect={() => {
                             if (onProductSelect && href) {
-                                throw new Error("Too many pricing section actions specified. Either provide a callback or an href.")
+                                throw new Error(
+                                    'Too many pricing section actions specified. Either provide a callback or an href.'
+                                )
                             }
 
                             if (onProductSelect) {
-                                onProductSelect(product);
+                                onProductSelect(product)
                             } else if (href) {
-                                router.push(href);
+                                router.push(href)
                             } else {
-                                throw new Error("Pricing Section action not specified. Either provide a callback or an href.")
+                                throw new Error(
+                                    'Pricing Section action not specified. Either provide a callback or an href.'
+                                )
                             }
                         }}
                     />
                 </div>
             ))}
         </div>
-    );
+    )
 }

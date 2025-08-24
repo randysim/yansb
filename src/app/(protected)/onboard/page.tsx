@@ -1,16 +1,16 @@
-import { redirect } from "next/navigation";
-import OnboardManager from "./components/onboard-manager";
-import { auth } from "@/auth";
+import { redirect } from 'next/navigation'
+import OnboardManager from './components/onboard-manager'
+import { auth } from '@/auth'
 
 export default async function OnboardPage() {
-    const session = await auth();
+    const session = await auth()
 
     if (!session || !session.user || !session.user.id) {
-        redirect("/signin");
+        redirect('/signin')
     }
 
     if (session.user.setting) {
-        redirect("/dashboard");
+        redirect('/dashboard')
     }
 
     return (
