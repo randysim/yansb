@@ -82,6 +82,7 @@ pnpm db:push
 ### 5. Google oAuth Setup
 
 Javascript Origins: [your-domain-url]
+
 Authorized redirect URI: [your-domain-url]/api/auth/callback/google
 
 ## 📚 Scripts
