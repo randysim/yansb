@@ -44,7 +44,6 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
             <div
                 ref={contentRef}
                 className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ maxHeight: '0px' }}
             >
                 <div className="pt-3 pb-3 text-gray-600 text-left">{answer}</div>
             </div>
