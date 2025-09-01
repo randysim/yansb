@@ -37,9 +37,11 @@ function UserDropdown() {
                 onClick={() => setOpen((v) => !v)}
             >
                 <Image
+                    width={32}
+                    height={32}
                     src={session.user.image || 'undefined'}
                     alt={session.user.name || 'undefined'}
-                    className="h-8 w-8 rounded-full"
+                    className="rounded-full"
                 />
 
                 {/* Downward modern arrow */}
@@ -58,9 +60,11 @@ function UserDropdown() {
                     {/* Row 1: PFP and name */}
                     <div className="flex items-center space-x-3 px-4 py-3 border-b">
                         <Image
+                            width={32}
+                            height={32}
                             src={session.user.image || 'undefined'}
                             alt={session.user.name || 'undefined'}
-                            className="h-8 w-8 rounded-full"
+                            className="rounded-full"
                         />
                         <span className="font-medium">{session.user.name || 'User'}</span>
                     </div>

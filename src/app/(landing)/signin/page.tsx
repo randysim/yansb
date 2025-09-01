@@ -14,16 +14,17 @@ const SIGNIN_ERROR_URL = '/error'
 
 export default async function SignInPage(props: SignInPageProps) {
     const session = await auth()
-    const params = await props.params
     const searchParams = await props.searchParams
 
-    const callbackUrl = Array.isArray(searchParams.callbackUrl)
-        ? searchParams.callbackUrl[0]
-        : searchParams.callbackUrl
+    const callbackUrl = Array.isArray(searchParams.callbackurl)
+        ? searchParams.callbackurl[0]
+        : searchParams.callbackurl
 
     if (session) {
         redirect(callbackUrl ?? '/dashboard')
     }
+
+    console.log("CALLBACKURL: " + callbackUrl)
 
     return (
         <div className="flex justify-center items-center h-screen">

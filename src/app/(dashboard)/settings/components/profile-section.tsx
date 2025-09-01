@@ -12,9 +12,11 @@ export default function ProfileSection({ session }: { session: Session }) {
                     <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
                         {session?.user?.image ? (
                             <Image
+                                width={64}
+                                height={64}
                                 src={session.user.image}
                                 alt="Profile"
-                                className="w-16 h-16 rounded-full object-cover"
+                                className="rounded-full object-cover"
                             />
                         ) : (
                             <User className="w-8 h-8 text-muted-foreground" />
