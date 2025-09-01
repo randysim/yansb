@@ -22,9 +22,15 @@ export default function SuccessPage() {
 }
 
 async function VerifySuccess() {
-    const session = await auth()
+    const session = await auth();
 
-    const subscription = await syncStripeData(session?.user.setting?.customerId!)
+    const customerId = session?.user.setting?.customerId;
+
+    if (!customerId) {
+        return null;
+    }
+
+    const subscription = await syncStripeData(customerId)
 
     const renderMessage = () => {
         if (!subscription) {

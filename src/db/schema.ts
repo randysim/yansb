@@ -1,4 +1,4 @@
-import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey, boolean, customType } from 'drizzle-orm/pg-core'
+import { pgTable, timestamp, uuid, varchar, text, integer, primaryKey, boolean } from 'drizzle-orm/pg-core'
 import type { AdapterAccountType } from 'next-auth/adapters'
 import { v4 as uuidv4 } from 'uuid'
 import Stripe from 'stripe'

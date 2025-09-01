@@ -20,7 +20,7 @@ export function DatePicker({ date: initialDate, onSelect }: DatePickerProps) {
         if (date && date != initialDate) {
             onSelect(date)
         }
-    }, [date, onSelect])
+    }, [date, onSelect, initialDate])
 
     return (
         <Popover>

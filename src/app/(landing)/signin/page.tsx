@@ -6,16 +6,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 
 type SignInPageProps = {
-    searchParams: {
-        callbackUrl?: string
-    }
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 const SIGNIN_ERROR_URL = '/error'
 
-export default async function SignInPage({ searchParams }: SignInPageProps) {
+export default async function SignInPage(props: SignInPageProps) {
     const session = await auth()
-    const { callbackUrl } = await searchParams
+    const params = await props.params
+    const searchParams = await props.searchParams
+
+    const callbackUrl = Array.isArray(searchParams.callbackUrl)
+        ? searchParams.callbackUrl[0]
+        : searchParams.callbackUrl
 
     if (session) {
         redirect(callbackUrl ?? '/dashboard')

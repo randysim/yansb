@@ -1,6 +1,7 @@
 import { User } from 'lucide-react'
 import { Session } from 'next-auth'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 export default function ProfileSection({ session }: { session: Session }) {
     return (
@@ -10,7 +11,7 @@ export default function ProfileSection({ session }: { session: Session }) {
                 <div className="flex items-center space-x-4 mb-6">
                     <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
                         {session?.user?.image ? (
-                            <img
+                            <Image
                                 src={session.user.image}
                                 alt="Profile"
                                 className="w-16 h-16 rounded-full object-cover"

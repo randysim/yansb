@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/sheet'
 import React from 'react'
 
-export default function PricingBottomSheet({ children }: React.PropsWithChildren<{}>) {
+export default function PricingBottomSheet({ children }: React.PropsWithChildren) {
     const handleCheckout = async (product: ProductType) => {
         try {
             const response = await fetch('/api/subscriptions/checkout', {

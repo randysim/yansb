@@ -1,4 +1,3 @@
-import NextAuth from 'next-auth'
 import { InferSelectModel } from 'drizzle-orm'
 import { settings, subscriptions } from '@/db/schema'
 

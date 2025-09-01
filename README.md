@@ -39,6 +39,14 @@ pnpm install
 
 Copy the example below and fill in your secrets:
 
+Command to generate secrets:
+
+```
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+.env
+
 ```env
 NEXT_PUBLIC_STRIPE_PK=your-stripe-pk
 DATABASE_URL=your-database-url

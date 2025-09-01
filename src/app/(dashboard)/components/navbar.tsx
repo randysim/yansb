@@ -4,14 +4,13 @@ import Link from 'next/link'
 import { Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import Image from 'next/image'
 
 import { useSession, signOut } from 'next-auth/react'
 
 function UserDropdown() {
     const { data: session } = useSession()
     const [open, setOpen] = useState(false)
-
-    if (!session || !session.user) return null
 
     const menuRef = useRef<HTMLDivElement>(null)
 
@@ -29,13 +28,15 @@ function UserDropdown() {
         }
     }, [open])
 
+    if (!session || !session.user) return null
+
     return (
         <div className="relative select-none" ref={menuRef}>
             <div
                 className="flex items-center space-x-2 border-2 border-transparent transition-all duration-150 animate-in cursor-pointer rounded-full hover:border-foreground/20"
                 onClick={() => setOpen((v) => !v)}
             >
-                <img
+                <Image
                     src={session.user.image || 'undefined'}
                     alt={session.user.name || 'undefined'}
                     className="h-8 w-8 rounded-full"
@@ -56,7 +57,7 @@ function UserDropdown() {
                 <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-lg border">
                     {/* Row 1: PFP and name */}
                     <div className="flex items-center space-x-3 px-4 py-3 border-b">
-                        <img
+                        <Image
                             src={session.user.image || 'undefined'}
                             alt={session.user.name || 'undefined'}
                             className="h-8 w-8 rounded-full"
