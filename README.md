@@ -100,6 +100,8 @@ Authorized redirect URI: [your-domain-url]/api/auth/callback/google
 - `pnpm start` — Start production server
 - `pnpm db:push` — Push Drizzle schema migrations
 - `pnpm db:studio` - Open Drizzle Studio
+- `pnpm db:generate` - Generate Migration Files
+- `pnpm db:migrate` - Migrate Database
 - `pnpm format` — Format code with Prettier
 
 ***
