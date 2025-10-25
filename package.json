@@ -10,6 +10,8 @@
     "preinstall": "npx only-allow pnpm",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "format": "prettier --write \"src/**/*.{js,ts,jsx,tsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,ts,jsx,tsx,json,css,md}\""
   },
