@@ -6,7 +6,7 @@ A feature-rich, modern SaaS boilerplate built with **Next.js** and packed with e
 
 ## 🚀 Overview
 
-This template comes ready with:
+This project was made with:
 
 - **Next.js 15** for the core app framework
 - **TypeScript** throughout for type safety
@@ -25,8 +25,8 @@ This template comes ready with:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/yansb.git
-cd yansb
+git clone git@github.com:naclo-owner/naclo.git
+cd naclo
 ```
 
 ### 2. Install Dependencies
@@ -48,16 +48,20 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 .env
 
 ```env
-NEXT_PUBLIC_STRIPE_PK=your-stripe-pk
-DATABASE_URL=your-database-url
-AUTH_SECRET=your-auth-secret
-AUTH_GOOGLE_ID=your-google-oauth-id
-AUTH_GOOGLE_SECRET=your-google-oauth-secret
-STRIPE_SECRET_KEY=your-stripe-secret
-STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+DATABASE_URL=postgresql://<username>:<password>@<hostname>:<port>/<db-name>
+AUTH_SECRET=<secret from above>
+AUTH_GOOGLE_ID=<google-client-id>
+AUTH_GOOGLE_SECRET=<google-client-secret>
 ```
 
 ### 4. Database Setup
+
+Install Postgres + PSQL. 
+
+```
+sudo -u postgres psql
+CREATE DATABASE <database_name>; # need to have a semicolon at the end of this.
+```
 
 Update your `DATABASE_URL` and run:
 
@@ -76,7 +80,6 @@ pnpm db:push
 | `src/db/`                       | Drizzle ORM schema + DB config          |
 | `src/db/schema.ts`              | Postgres table definitions (users, subs)|
 | `src/auth.ts`                   | Auth.js/NextAuth config                 |
-| `src/stripe.ts`                 | Stripe utility functions                |
 | `src/types/`                    | Custom TypeScript type definitions      |
 | `public/`                       | Static assets and images                |
 | `.env`                          | Environment variables/secrets           |
@@ -92,6 +95,14 @@ pnpm db:push
 Javascript Origins: [your-domain-url]
 
 Authorized redirect URI: [your-domain-url]/api/auth/callback/google
+
+### 6. Supabase Setup
+
+Create a Database on Supabase. On the top bar, click on "connect" and make sure to select transaction pooler instead of direct connection since Vercel uses serverless architecture. Make sure to update database password in the url.
+
+### 7. Vercel Setup
+
+Set .env variables + set build command to ``pnpm db:migrate && next build``
 
 ## 📚 Scripts
 
@@ -110,6 +121,26 @@ Authorized redirect URI: [your-domain-url]/api/auth/callback/google
 
 - **Use pnpm!** (Install with: `npm i -g pnpm`)
 - Customization is easy: tweak components, pages, and config files as needed.
-- Stripe and Google OAuth are ready for your credentials.
+- Google OAuth are ready for your credentials.
 - See `src/db/schema.ts` for how the database is structured.
 - Organizes components and code by feature.
+
+## Collaboration
+
+### Branches
+
+- "main" branch triggers CI/CD. Never push to this directly.
+- "dev" branch <- merge all PRs into here, code that is reviewed by PMs
+- "<feature>" branch <- you can create your own branches and add whatever features you want.
+
+Hence, flow is: (work on feature branch) -> PR to dev -> dev -> PR to main -> main
+
+### Database Migrations and updating.
+
+Multiple times when working on new features, the database schema will have to be updated to support more tables, relations, columns, etc. There are two commands you should be aware of
+
+``pnpm db:push`` will force update the database with the current schema. This should only be done locally for development purposes.
+
+``pnpm db:generate`` will generate a migration file in ./drizzle. The migration file is all the changes in the database since the last migration. You do this when you are ready to merge to dev. **NOTE**: Before running ``pnpm db:generate``, make sure to merge "dev" into your feature branch. That way, your migration is generated on top of whatever database schema already exists. Thus, the responsibility of handling database conflicts is allocated to the developer making the most recent change.
+
+``pnpm db:migrate`` This is run by the CI/CD to update the production database using the migration files. You can technically run this locally but not needed.
