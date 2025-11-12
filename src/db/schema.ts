@@ -21,8 +21,8 @@ export const users = pgTable('users', {
 export const accounts = pgTable(
     'accounts',
     {
+        id: serial("id").primaryKey(), // Purely for database convenience using Supabase WebUI
         userId: uuid()
-            .primaryKey()
             .notNull()
             .references(() => users.id, { onDelete: 'cascade' }),
         type: text().$type<AdapterAccountType>().notNull(),
@@ -42,11 +42,7 @@ export const accounts = pgTable(
             .$onUpdate(() => new Date()),
     },
     (account) => [
-        {
-            compoundKey: primaryKey({
-                columns: [account.provider, account.providerAccountId],
-            }),
-        },
+        unique("provider_providerAccountId_idx").on(account.provider, account.providerAccountId)
     ]
 )
 
