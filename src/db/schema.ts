@@ -22,6 +22,7 @@ export const accounts = pgTable(
     'accounts',
     {
         userId: uuid()
+            .primaryKey()
             .notNull()
             .references(() => users.id, { onDelete: 'cascade' }),
         type: text().$type<AdapterAccountType>().notNull(),
