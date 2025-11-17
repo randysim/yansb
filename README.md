@@ -25,8 +25,8 @@ This project was made with:
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:naclo-owner/naclo.git
-cd naclo
+git clone git@github.com:randysim/yansb.git
+cd yansb
 ```
 
 ### 2. Install Dependencies
