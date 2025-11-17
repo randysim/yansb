@@ -48,10 +48,13 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 .env
 
 ```env
-DATABASE_URL=postgresql://<username>:<password>@<hostname>:<port>/<db-name>
-AUTH_SECRET=<secret from above>
-AUTH_GOOGLE_ID=<google-client-id>
-AUTH_GOOGLE_SECRET=<google-client-secret>
+NEXT_PUBLIC_STRIPE_PK=your-stripe-pk
+DATABASE_URL=your-database-url
+AUTH_SECRET=your-auth-secret
+AUTH_GOOGLE_ID=your-google-oauth-id
+AUTH_GOOGLE_SECRET=your-google-oauth-secret
+STRIPE_SECRET_KEY=your-stripe-secret
+STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
 ```
 
 ### 4. Database Setup
