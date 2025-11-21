@@ -144,6 +144,6 @@ Multiple times when working on new features, the database schema will have to be
 
 ``pnpm db:push`` will force update the database with the current schema. This should only be done locally for development purposes.
 
-``pnpm db:generate`` will generate a migration file in ./drizzle. The migration file is all the changes in the database since the last migration. You do this when you are ready to merge to dev. **NOTE**: Before running ``pnpm db:generate``, make sure to merge "dev" into your feature branch. That way, your migration is generated on top of whatever database schema already exists. Thus, the responsibility of handling database conflicts is allocated to the developer making the most recent change.
+``pnpm db:generate`` will generate a migration file in ./drizzle. The migration file is all the changes in the database since the last migration. You do this when you are ready to merge to dev. **NOTE**: Before running ``pnpm db:generate``, make sure to merge "dev" into your feature branch. That way, your migration is generated on top of whatever database schema already exists. Thus, the responsibility of handling database conflicts is allocated to the developer making the most recent change. ANOTHER (maybe better) solution is to only run ``pnpm db:generate`` on the dev branch and for every other branch, operate using ``pnpm db:push``
 
 ``pnpm db:migrate`` This is run by the CI/CD to update the production database using the migration files. You can technically run this locally but not needed.
